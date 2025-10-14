@@ -21,6 +21,8 @@ router.post("/verify-otp", verifyOtpController);
 router.post("/login", loginController);
 
 // http://localhost:3000/api/v1/auth/allUsers
-router.get("/allUsers", tokenCheckMiddleware, adminCheck, allUsersController);
+// to active jwt uncomment this line and comment the second line
+// router.get("/allUsers", tokenCheckMiddleware, adminCheck, allUsersController);
+router.get("/allUsers", allUsersController);
 
 module.exports = router;
