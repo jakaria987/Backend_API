@@ -1,7 +1,10 @@
 const multer = require("multer");
 const path = require("path");
 
-function createUploader(folder = "./uploads", fileTypes = /jpeg|jpg|png|gif/) {
+function createUploader(
+  folder = "./uploads",
+  fileTypes = /jpeg|jpg|png|gif|webp/
+) {
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, folder);
@@ -32,7 +35,10 @@ function createUploader(folder = "./uploads", fileTypes = /jpeg|jpg|png|gif/) {
     fileFilter: function (req, file, cb) {
       checkFileType(file, cb);
     },
-    // limits: { fileSize: 2000000 } // optional
+    limits: {
+      fileSize: 5 * 1024 * 1024,
+      files: 3,
+    },
   });
 }
 
